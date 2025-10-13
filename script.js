@@ -1,5 +1,6 @@
 
 console.log('Lets write javascript');
+let currentSong = new Audio();
 
 async function getSongs() {
     let a = await fetch("http://127.0.0.1:5500/songs/");
@@ -20,35 +21,55 @@ async function getSongs() {
     return songs;
 }
 
+const playMusic = (track) => {
+    // let audio = new Audio("/songs/" + track)
+    currentSong.src = "/songs/" + track;
+    currentSong.play()
+}
+
 async function main() {
+
+
     // get the list of all songs .. .. 
     let songs = await getSongs();
-    console.log(songs);
 
+    // show all songs in playlist..
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li> ${song.replaceAll("%20", " ")} </li>`;
+        songUL.innerHTML = songUL.innerHTML + `<li> <img class="invert" width="34" src="img/music.svg" alt="">
+                            <div class="info">
+                                <div> ${song.replaceAll("%20", " ")}</div>
+                                <div>Harry</div>
+                            </div>
+                            <div class="playnow">
+                                <span>Play Now</span>
+                                <img class="invert" src="img/play.svg" alt="">
+                            </div> </li>`;
     }
-    let playButton = document.querySelector('img[src="play.svg"]');
-
-    playButton.addEventListener('click', () => {
-
-        // let audio = new Audio(songs[0]);
-        let audio = new Audio("http://127.0.0.1:5500/songs/" + songs[0]);
 
 
-        // Wait for metadata to load before accessing duration
-        audio.addEventListener('loadedmetadata', () => {
-            console.log("Duration:", audio.duration.toFixed(2), "seconds");
-            console.log("Current src:", audio.currentSrc,);
-            console.log("Current Time:", audio.currentTime,);
-        });
+    // attach event listener to each song 
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
 
-        audio.play()
-            .then(() => console.log("Playing:", songs[1]))
-            .catch(err => console.error("Playback error:", err));
+        e.addEventListener("click", element => {
+            console.log(e.querySelector(".info").firstElementChild.innerHTML)
+
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        })
     });
 
+
+    // attach an event listener to play, next and previous.. 
+    play.addEventListener("click", () => {
+        if (currentSong.paused) {
+            currentSong.play(); 
+            play.src = "pause.svg"
+        }
+        else {
+            currentSong.pause();
+            play.src = "play.svg"
+        }
+    })
 
 }
 
