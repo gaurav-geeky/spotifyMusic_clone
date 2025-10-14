@@ -55,7 +55,8 @@ async function main() {
     // show all songs in playlist..
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li> <img class="invert" width="34" src="img/music.svg" alt="">
+        songUL.innerHTML = songUL.innerHTML + `<li> 
+        <img class="invert" width="34" src="img/music.svg" alt="" >
                             <div class="info">
                                 <div> ${song.replaceAll("%20", " ")}</div>
                                 <div>Harry</div>
@@ -102,6 +103,15 @@ async function main() {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         (document.querySelector(".circle").style.left = percent + "%");
         currentSong.currentTime = (currentSong.duration * percent) / 100
+    })
+
+    // Add an event listener for hamburger. 
+    document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector(".left").style.left = "0";
+    })
+
+    document.querySelector(".close").addEventListener("click", () => {
+        document.querySelector(".left").style.left = "-120%"; 
     })
 }
 
