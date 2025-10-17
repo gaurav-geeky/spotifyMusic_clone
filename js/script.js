@@ -36,7 +36,7 @@ async function getSongs(folder) {
         if (element.href.endsWith(".mp3")) {
             songs.push(element.href.split(`/${folder}/`)[1]);
         }
-    } 
+    }
 
     // play 
 
@@ -131,7 +131,7 @@ async function displayAlbums() {
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
             songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)
-            playMusic(songs[0]); 
+            playMusic(songs[0]);
         })
     });
 
@@ -206,6 +206,9 @@ async function main() {
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
         console.log("setting volume to ", e.target.value, "/100")
         currentSong.volume = parseInt(e.target.value) / 100;
+        if (currentSong.volume > 0) {
+            document.querySelector(".volume> img").src = document.querySelector(".volume> img").src.replace("mute.svg", "volume.svg");
+        }
     })
 
     // Add event listener to mute the track 

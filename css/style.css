@@ -88,13 +88,11 @@ body {
 
 .cardContainer {
     margin: 30px;
-    display: flex; 
+    display: flex;
     gap: 10px;
     flex-wrap: wrap;
     overflow-y: auto;
     max-height: 60vh;
-    padding: 0 10px;
-    /* add padding instead of wide margins */
 }
 
 .card {
@@ -134,8 +132,8 @@ body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 168px;
-    right: 17px;
+    bottom: 110px;
+    right: 25px;
     opacity: var(--a);
     transition: all 1s ease-out;
 }
@@ -334,7 +332,10 @@ body {
         z-index: 1;
         width: 373px;
         background-color: black;
-        padding: 0;
+        padding: 0; 
+        position: fixed; 
+        top: 0; 
+        height: 100vh; 
     }
 
     .songinfo,
@@ -363,8 +364,7 @@ body {
     }
 
     .playbar {
-        width: calc(100vw - 60px);
-        /* 3 : 29: 14 pe  */
+        width: calc(100vw - 60px); 
     }
 
     .seekbar {
@@ -376,11 +376,11 @@ body {
     }
 
     .card {
-        width: 44vw;
+        width: 55vw;
     }
 
     .cardContainer {
-        margin: 0;
+        max-height: 65vh;
         justify-content: center;
     }
 
@@ -389,10 +389,36 @@ body {
         gap: 23px;
         align-items: center;
     }
+
+    .cardContainer {
+        max-height: unset;
+        overflow-y: unset;
+        margin-bottom: 25vh;
+    } 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .card {
-        width: 74vw;
+        width: 100%;
     }
+
+
+    .header>* {
+        padding: 5px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }
+
+
+    .library {
+        height: 85vh;
+    }
+
+    .left {
+        
+        width: 100vw;
+    }
+
 }
