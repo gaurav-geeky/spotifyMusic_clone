@@ -139,6 +139,30 @@ but target select those which is clicked ...
 
 
 
+# Add event listener to mute the track
+
+string are immutable  so
+e.target.src = e.target.src.replace("mute.svg", "volume.svg");
+
+
+
+
+# card of card container 
+
+<div data-folder="ncs" class="card ">
+    <div class="play">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 20V4L19 12L5 20Z" stroke="#141834" stroke-width="1.5"
+                stroke-linejoin="round" fill="#000" />
+        </svg>
+    </div>
+    <img src="https://i.scdn.co/image/ab67706f0000000249a1ed33d2ca64e6a5d0e550" alt="haapy_hit">
+        <h2>Happy Hits! Ncs </h2>
+        <p>Hits to boost your mood and fill you with happiness! </p>
+</div> 
+
+
 
 
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Bungee+Tint&family=IM+Fell+English:ital@0;1&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tektur:wght@400..900&display=swap');
 
-:root { 
-    --a: 0; 
+:root {
+    --a: 0;
 }
 
 * {
@@ -87,8 +87,8 @@ body {
 }
 
 .cardContainer {
-    margin: 30px auto;
-    display: flex;
+    margin: 30px;
+    display: flex; 
     gap: 10px;
     flex-wrap: wrap;
     overflow-y: auto;
@@ -102,14 +102,14 @@ body {
     padding: 10px;
     border-radius: 5px;
     background-color: #252525;
-    position: relative; 
-    transition: all 0.2s; 
+    position: relative;
+    transition: all 0.2s;
 }
 
 .card:hover {
     background-color: rgb(76, 76, 76);
-    cursor: pointer; 
-    --a: 1; 
+    cursor: pointer;
+    --a: 1;
 }
 
 /*  for all immediate elements inside card */
@@ -123,6 +123,7 @@ body {
     object-fit: contain;
 }
 
+
 .play {
     width: 28px;
     height: 28px;
@@ -135,7 +136,7 @@ body {
     position: absolute;
     top: 168px;
     right: 17px;
-    opacity: var(--a); 
+    opacity: var(--a);
     transition: all 1s ease-out;
 }
 
@@ -193,6 +194,13 @@ body {
     display: flex;
     justify-content: center;
     gap: 16px;
+    z-index: 10;
+}
+
+.songList {
+    height: 544px;
+    overflow: auto;
+    margin-bottom: 44px;
 }
 
 .songList ul {
@@ -201,6 +209,7 @@ body {
 
 .hamburger {
     display: none;
+    cursor: pointer;
 }
 
 .close {
@@ -218,9 +227,10 @@ body {
     list-style-type: decimal;
     display: flex;
     justify-content: space-between;
+    gap: 15px;
     cursor: pointer;
     padding: 12px 0;
-    border: 1px solid rgba(146, 143, 143, 0.491);
+    border: 1px solid rgba(64, 61, 61, 0.491);
     margin: 12px 0;
     padding: 13px;
     border-radius: 5px;
@@ -230,7 +240,7 @@ body {
     font-size: 13px;
 }
 
-.songList .info div {
+.info div {
     word-break: break-all;
 }
 
@@ -303,6 +313,11 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
+}
+
+.range input {
+    cursor: pointer;
 }
 
 .abovebar {
