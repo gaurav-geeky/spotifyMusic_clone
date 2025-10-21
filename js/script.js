@@ -1,4 +1,3 @@
-
 console.log('Lets write javascript');
 let currentSong = new Audio();
 let songs;
@@ -37,16 +36,17 @@ async function getSongs(folder) {
             songs.push(element.href.split(`/${folder}/`)[1]);
         }
     }
-
     // play 
 
     // show all the songs in the playlist..
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
+
     songUL.innerHTML = "";
 
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li>  
-                <img class="invert" width="34" src="img/music.svg" alt="" >
+        songUL.innerHTML = songUL.innerHTML +
+            `<li>  
+                    <img class="invert" width="34" src="img/music.svg" alt="" >
                             <div class="info">
                                 <div> ${song.replaceAll("%20", " ")}</div>
                                 <div>Harry</div>
@@ -55,7 +55,8 @@ async function getSongs(folder) {
                             <div class="playnow">
                                 <span>Play Now</span>
                                 <img class="invert" src="play.svg" alt="">
-                            </div> </li>`;
+                            </div> 
+            </li>`;
     }
 
     // attach event listener to each song 
@@ -66,25 +67,21 @@ async function getSongs(folder) {
     });
 
     return songs // without this next previous not working (inept)
-
 }
-
-
 
 // play music   it takes   track ,  pause krna hai ki nahi song ko..
 const playMusic = (track, pause = false) => {
     currentSong.src = `/${currFolder}/` + track;
     if (!pause) {
         currentSong.play();
-        play.src = "img/pause.svg"; // becuase harry's pause svg was not changing 
+        play.src = "img/pause.svg"; // becuase harry's pause svg was not changing   
     }
     document.querySelector(".songinfo").innerHTML = decodeURI(track);
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 
 
-
-//  display Albums Code to populate the albums // 
+//  display Albums      // Code to populate the albums 
 async function displayAlbums() {
     let a = await fetch(`http://127.0.0.1:5500/songs/`);
     let response = await a.text();
@@ -100,7 +97,7 @@ async function displayAlbums() {
 
         if (e.href.includes("/songs/")) {
             let folder = e.href.split("/").slice(-2)[1];
-            // console.log(folder)
+            console.log(folder)   //  extra console 
             // console.log(e.href.split("/").slice(-2)); 
             // get metadata of the folder.. 
             let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
@@ -110,20 +107,19 @@ async function displayAlbums() {
 
             // data-folder="${folder}" yes but  data-folder="cs" shows on 1 list click anywhere.  
             cardContainer.innerHTML = cardContainer.innerHTML + `
-            <div data-folder="${folder}" class="card ">
-                        <div class="play">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 20V4L19 12L5 20Z" stroke="#141834" stroke-width="1.5"
-                                    stroke-linejoin="round" fill="#000" />
-                            </svg>
-                        </div>
-                        <img src="/songs/${folder}/cover.png" alt="">
-                        <h2> ${response.title} </h2>
-                        <p> ${response.description} </p>
-                    </div>
+                <div data-folder="${folder}" class="card ">
+                            <div class="play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 20V4L19 12L5 20Z" stroke="#141834" stroke-width="1.5"
+                                        stroke-linejoin="round" fill="#000" />
+                                </svg>
+                            </div>
+                            <img src="/songs/${folder}/cover.png" alt="">
+                            <h2> ${response.title} </h2>
+                            <p> ${response.description} </p>
+                </div>
             `
-
         }
     }
 
@@ -131,22 +127,22 @@ async function displayAlbums() {
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
             songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)
+            // console.log(songs)  // extra console 
             playMusic(songs[0]);
         })
     });
-
 }
 
-async function main() {
-    // get the list of all songs .. .. 
 
-    await getSongs("songs/ncs");            // this is the path of playlist 
+async function main() {
+    // get the list of all songs .. ..  
+
+    await getSongs("songs/ncs");         //  this is the path of playlist (default list in library "songs/ncs")
     // currentSong.src = songs[0];
     playMusic(songs[0], true)  // 2: 43: 55 par
 
-    // Display all th albums on the page .. 
+    // Display all the albums on the page .. 
     await displayAlbums();
-
 
     // attach an event listener to play, next and previous.. 
     play.addEventListener("click", () => {
@@ -201,7 +197,6 @@ async function main() {
         }
     });
 
-
     // Add an event listener to Volume
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
         console.log("setting volume to ", e.target.value, "/100")
@@ -226,7 +221,6 @@ async function main() {
     })
 
 
-
 }
 
 main();
@@ -236,3 +230,4 @@ main();
 
 
 
+// javscript code 
